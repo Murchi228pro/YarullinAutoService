@@ -23,12 +23,61 @@ namespace YarullinAutoService
         public ServicePage()
         {
             InitializeComponent();
-            var services = YarullinAutoServiceEntities.Context.Services;
-            ServiceListView.ItemsSource = services.ToList();
+
+            ComboType.SelectedIndex = 0;    
+
+            UpdateServices(null, null);
         }
 	
 	public void ButtonClick(object sender ,RoutedEventArgs e){
 	    Manager.MainFrame.Navigate(new AddEditPage());
 	}
+    private void UpdateServices(object sender, EventArgs e)
+    {
+            var services = YarullinAutoServiceEntities.Context.Services.ToList();
+
+
+            if (ComboType.SelectedIndex == 0)
+            {
+                services = services.Where(p => Convert.ToInt32(p.Discount) >= 0 && Convert.ToInt32(p.Discount) <= 100).ToList();
+            }
+            if (ComboType.SelectedIndex == 1)
+            {
+                services = services.Where(p => Convert.ToInt32(p.Discount) >= 0 && Convert.ToInt32(p.Discount) < 5).ToList();
+            }
+            if (ComboType.SelectedIndex == 2)
+            {
+                services = services.Where(p => Convert.ToInt32(p.Discount) >= 5 && Convert.ToInt32(p.Discount) < 15).ToList();
+            }
+            if (ComboType.SelectedIndex == 3)
+            {
+                services = services.Where(p => Convert.ToInt32(p.Discount) >= 15 && Convert.ToInt32(p.Discount) <= 30).ToList();
+            }
+            if (ComboType.SelectedIndex == 4)
+            {
+                services = services.Where(p => Convert.ToInt32(p.Discount) >= 30 && Convert.ToInt32(p.Discount) < 70).ToList();
+            }
+            if (ComboType.SelectedIndex == 5)
+            {
+                services = services.Where(p => Convert.ToInt32(p.Discount) >= 70 && Convert.ToInt32(p.Discount) <= 100).ToList();
+            }
+
+            if (RButtonDown.IsChecked.Value)
+            {
+                services = services.OrderBy(p => p.Cost).ToList();
+            }
+
+            if (RButtonUp.IsChecked.Value)
+            {
+                services = services.OrderByDescending(p => p.Cost).ToList();
+
+            }
+
+            services = services.Where(p => p.Title.Contains(TBoxSearch.Text)).ToList();
+
+            ServiceListView.ItemsSource = services;
+
+        }
     }
+    
 }
