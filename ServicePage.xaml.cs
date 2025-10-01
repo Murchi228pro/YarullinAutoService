@@ -64,13 +64,12 @@ namespace YarullinAutoService
 
             if (RButtonDown.IsChecked.Value)
             {
-                services = services.OrderBy(p => p.Cost).ToList();
+				services = services.OrderByDescending(p => p.Cost).ToList();
             }
 
             if (RButtonUp.IsChecked.Value)
             {
-                services = services.OrderByDescending(p => p.Cost).ToList();
-
+                services = services.OrderBy(p => p.Cost).ToList();
             }
 
             services = services.Where(p => p.Title.Contains(TBoxSearch.Text)).ToList();
