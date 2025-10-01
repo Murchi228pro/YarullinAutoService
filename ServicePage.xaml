@@ -46,6 +46,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Content="To main page" Click="ButtonClick" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="30"></Button>
     </Grid>
 </Page>

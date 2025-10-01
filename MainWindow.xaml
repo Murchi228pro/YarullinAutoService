@@ -7,8 +7,12 @@
         mc:Ignorable="d"
         Title="Yarullin" Height="450" Width="800" Icon="Content/Images/service_logo.ico" FontFamily="Tw Cen MT">
     <Grid>
-        <Image Source="Content/Images/service_logo.png" HorizontalAlignment="Left" Margin="0,0,0,348" Width="86" ></Image>
-        <TextBlock Text="Услуги автосервиса" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20"></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Image Source="Content/Images/service_logo.png" HorizontalAlignment="Left" Width="86" ></Image>
+        <TextBlock Text="Услуги автосервиса" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
         <Frame Grid.Row="1" Name="MainFrame" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden"></Frame>
         <Button Content="Назад" Name ="BackButton" HorizontalAlignment="Right" VerticalAlignment="Top" Click="BackButtonClick"/>
     </Grid>
